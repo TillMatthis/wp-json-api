@@ -145,6 +145,10 @@ class JSON_API_Post {
     $this->set_author_value($wp_post->post_author);
     $this->set_comments_value();
     $this->set_attachments_value();
+    $this->set_value('comment_status', $wp_post->comment_status);
+    //added output of video url for embedded video and added a dedicated output for thumbnail url
+    $this->set_value('postvideourl', get_the_post_video_url($this->id));
+    $this->set_value('postthumbnailurl', wp_get_attachment_image_src( get_post_thumbnail_id($this->ID), 'large' ));    
     $this->set_value('comment_count', (int) $wp_post->comment_count);
     $this->set_value('comment_status', $wp_post->comment_status);
     $this->set_thumbnail_value();
